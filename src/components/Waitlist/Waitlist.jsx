@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./Waitlist.css"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "../../firebase/firebase"
 
@@ -34,7 +35,7 @@ function Waitlist() {
 
     setLoading(false)
   }
-
+  const [email, setEmail] = useState("")
   return (
     <form onSubmit={handleSubmit}>
 
