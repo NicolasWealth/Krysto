@@ -1,64 +1,57 @@
-import "./Waitlist.css"
-import { collection, addDoc } from "firebase/firestore"
+import { useState } from "react"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "../../firebase/firebase"
 
 function Waitlist() {
 
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const emailValue = e.target.email.value
+    const email = e.target.email.value
 
-    console.log("FORM SUBMITTED")
-    console.log("Email:", emailValue)
+    setLoading(true)
 
     try {
+
       await addDoc(collection(db, "waitlist"), {
-        email: emailValue,
-        createdAt: new Date()
+        email: email,
+        createdAt: serverTimestamp(),
+        source: "landing-page",
+        status: "pending"
       })
 
-      console.log("Saved to Firebase")
-
-      alert("You joined the waitlist!")
-
+      setSuccess(true)
       e.target.reset()
 
     } catch (error) {
-      console.error("Firebase error:", error)
+      console.error(error)
+      alert("Something went wrong")
+
     }
+
+    setLoading(false)
   }
 
   return (
-    <section className="waitlist">
-      <div className="waitlist-container">
+    <form onSubmit={handleSubmit}>
 
-        <h2 className="waitlist-title">
-          Join the Krysto Waitlist
-        </h2>
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      />
 
-        <p className="waitlist-text">
-          Get early access when the AI study planner launches.
-        </p>
+      <button type="submit">
+        {loading ? "Joining..." : "Join Waitlist"}
+      </button>
 
-        <form className="waitlist-form" onSubmit={handleSubmit}>
+      {success && <p>You are on the waitlist.</p>}
 
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="waitlist-input"
-            name="email"
-            required
-          />
-
-          <button type="submit" className="waitlist-button">
-            Join Waitlist
-          </button>
-
-        </form>
-
-      </div>
-    </section>
+    </form>
   )
 }
 
