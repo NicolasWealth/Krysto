@@ -1,4 +1,5 @@
 import { useState } from "react"
+import useReveal from "../../hooks/useReveal"
 import "./Waitlist.css"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "../../firebase/firebase"
@@ -6,6 +7,7 @@ import { db } from "../../firebase/firebase"
 function Waitlist() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const ref = useReveal()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -31,7 +33,7 @@ function Waitlist() {
 
   return (
     <section className="waitlist">
-      <div className="waitlist-container">
+      <div className="waitlist-container reveal" ref={ref}>
 
         <span className="waitlist-label">Early access</span>
 
