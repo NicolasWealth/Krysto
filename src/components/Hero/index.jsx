@@ -5,25 +5,33 @@ function Hero() {
     <section className="hero">
       <div className="hero-container">
 
+        <div className="hero-eyebrow">
+          <span className="hero-eyebrow-dot" />
+          Now accepting early access
+        </div>
+
         <h1 className="hero-title">
-          Krysto
+          Study smarter,<br />
+          <span className="hero-title-italic">not harder</span>
         </h1>
 
         <p className="hero-subtitle">
-          AI study planner that turns your goals into daily tasks.
+          Krysto turns your exam goals into structured daily tasks —
+          powered by AI, built for students.
         </p>
 
         <div className="hero-form">
-          <input 
+          <input
             type="email"
             placeholder="Enter your email"
             className="hero-input"
           />
-
           <button className="hero-button">
             Join Waitlist
           </button>
         </div>
+
+        <p className="hero-meta">No spam. Unsubscribe anytime.</p>
 
       </div>
     </section>
