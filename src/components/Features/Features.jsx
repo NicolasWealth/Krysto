@@ -1,3 +1,4 @@
+import useReveal from "../../hooks/useReveal"
 import "./Features.css"
 
 const features = [
@@ -22,11 +23,14 @@ const features = [
 ]
 
 function Features() {
+  const headerRef = useReveal()
+  const gridRef = useReveal()
+
   return (
     <section className="features">
       <div className="features-container">
 
-        <div className="features-header">
+        <div className="features-header reveal" ref={headerRef}>
           <span className="features-label">How it works</span>
           <h2 className="features-title">
             Everything you need to<br />
@@ -34,7 +38,7 @@ function Features() {
           </h2>
         </div>
 
-        <div className="features-grid">
+        <div className="features-grid stagger reveal" ref={gridRef}>
           {features.map((f) => (
             <div className="feature-card" key={f.title}>
               <span className="feature-icon">{f.icon}</span>
