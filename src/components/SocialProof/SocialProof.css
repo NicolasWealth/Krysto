@@ -1,0 +1,56 @@
+.social-proof {
+  padding: 0 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.social-proof-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.social-proof-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-proof-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+@media (max-width: 560px) {
+  .social-proof-container {
+    height: auto;
+    padding: 20px 0;
+    gap: 20px;
+  }
+
+  .social-proof-divider {
+    display: none;
+  }
+}
